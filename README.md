@@ -27,3 +27,4 @@ Welcome to ListHive, the buzzing hub for all your list and tracker needs. This b
 ## Component Hierarchy Diagrams
 
 ## Entity Relationship Diagrams
+![ListHive](https://user-images.githubusercontent.com/117141950/230512784-a1e45b4c-a0d5-47fd-8d95-1df8f6611bb0.png)
