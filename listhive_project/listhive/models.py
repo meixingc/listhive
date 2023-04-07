@@ -67,3 +67,17 @@ class TrackerItemValue(models.Model):
     item = models.ForeignKey(TrackerItem, on_delete=models.CASCADE)
     field = models.ForeignKey(TrackerField, on_delete=models.CASCADE)
     value = models.CharField()
+
+
+# Folder Models
+class Folder(models.Model):
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='folders')
+    name = models.CharField(max_length=50)
+
+class ListInFolder(models.Model):
+    folder = models.ForeignKey(Folder, on_delete=models.CASCADE, related_name='lists')
+    list = models.ForeignKey(List, on_delete=models.CASCADE)
+
+class TrackerInFolder(models.Model):
+    folder = models.ForeignKey(Folder, on_delete=models.CASCADE, related_name='trackers')
+    tracker = models.ForeignKey(Tracker, on_delete=models.CASCADE)
