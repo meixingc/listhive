@@ -19,8 +19,6 @@ Welcome to ListHive, the buzzing hub for all your list and tracker needs. This b
 - Users can follow other users.
 - Users can add a public list or tracker as their own.
 
-## Trello
-
 ## Wireframes
 [ListHive Wireframes Figma](https://www.figma.com/file/j2SWNvQj71cH64upwdJ1Ru/ListHive-Wireframes?node-id=0%3A1&t=kWKsr4rOy8JvXgca-1)
 <img width="7420" alt="ListHive Wireframes" src="https://user-images.githubusercontent.com/117141950/230516173-884a11ba-3b4e-408e-85ec-e699d6af28bc.png">
