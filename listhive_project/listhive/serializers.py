@@ -189,7 +189,7 @@ class FolderSerializer(serializers.ModelSerializer):
     trackers = serializers.SerializerMethodField()
     class Meta:
         model = Folder
-        fields = ['id', 'user', 'name', public, 'lists', 'trackers']
+        fields = ['id', 'user', 'name', 'public', 'lists', 'trackers']
     def get_lists(self, folder):
         lists = ListInFolder.objects.filter(folder=folder)
         return ListInFolderSerializer(lists, many=True, context=self.context).data
