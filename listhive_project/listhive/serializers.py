@@ -23,24 +23,33 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         many=True,
         read_only=True
     )
+    followers = serializers.HyperlinkedRelatedField(
+        view_name='follower-detail',
+        lookup_field='followee',
+        many=True,
+        read_only=True
+    )
+    user_url = serializers.ModelSerializer.serializer_url_field(
+        view_name='user-detail'
+    )
     class Meta:
        model = User
-       fields = ('id', 'photo', 'name', 'username', 'email', 'lists', 'trackers', 'favorites')
+       fields = ('id', 'photo', 'user_url', 'first_name', 'last_name', 'username', 'email', 'lists', 'trackers', 'favorites', 'followers')
 
 class FollowerSerializer(serializers.HyperlinkedModelSerializer):
-    follower = serializers.HyperlinkedRelatedField(
+    follower_url = serializers.HyperlinkedRelatedField(
         view_name='user-detail',
         read_only=True,
         lookup_field='username'
     )
-    followee = serializers.HyperlinkedRelatedField(
+    followee_url = serializers.HyperlinkedRelatedField(
         view_name='user-detail',
         read_only=True,
         lookup_field='username'
     )
     class Meta:
        model = Follower
-       fields = ('follower', 'followee')
+       fields = ('follower', 'followee', 'follower_url', 'followee_url')
 
 class FavoriteSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.HyperlinkedRelatedField(
