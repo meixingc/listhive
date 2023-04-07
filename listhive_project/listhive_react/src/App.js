@@ -1,11 +1,15 @@
-import './App.css';
+import './App.css'
+import React from 'react'
+import Nav from './components/Nav'
+import Main from './components/Main'
+import Footer from './components/Footer'
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-        <h1>ListHive</h1>
+        <Nav />
+        <Main />
+        <Footer />
     </div>
   );
 }
-
-export default App;
