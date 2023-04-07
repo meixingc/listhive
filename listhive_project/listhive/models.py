@@ -73,6 +73,7 @@ class TrackerItemValue(models.Model):
 class Folder(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='folders')
     name = models.CharField(max_length=50)
+    public = models.BooleanField(default=False)
 
 class ListInFolder(models.Model):
     folder = models.ForeignKey(Folder, on_delete=models.CASCADE, related_name='lists')
