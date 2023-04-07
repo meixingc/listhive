@@ -167,7 +167,7 @@ class TrackerItemSerializer(serializers.HyperlinkedModelSerializer):
         model = TrackerItem
         fields = ('id', 'belongsTo', 'tracker')
 
-class TrackerItemFieldSerializer(serializers.HyperlinkedModelSerializer):
+class TrackerItemValueSerializer(serializers.HyperlinkedModelSerializer):
     belongsToItem = serializers.HyperlinkedRelatedField(
         view_name='trackeritem-detail',
         lookup_field='id',
@@ -179,7 +179,7 @@ class TrackerItemFieldSerializer(serializers.HyperlinkedModelSerializer):
         read_only=True
     )
     class Meta:
-        model = TrackerItemField
+        model = TrackerItemValue
         fields = ('id', 'belongsToItem', 'belongsToField' 'item', 'field', 'value')
 
 
