@@ -1,15 +1,19 @@
 import './App.css'
-import React from 'react'
+import React, {useState} from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { UserContext } from './context/UserContext'
 import Nav from './components/Nav'
 import Main from './components/Main'
 import Footer from './components/Footer'
 
 export default function App() {
-  return (
-    <div className="App">
-        <Nav />
-        <Main />
-        <Footer />
-    </div>
-  );
+    const [loggedIn, setLoggedIn] = useState(false)
+
+    return (
+        <div className="App">
+            <Nav />
+            <Main />
+            <Footer />
+        </div>
+    )
 }
