@@ -8,16 +8,20 @@ Welcome to ListHive, the buzzing hub for all your list and tracker needs. This b
 
 </details>
 
-## MVP Goals
+## Planning
+[Trello](https://trello.com/invite/b/py5RdMOZ/ATTI0d47688d7d0db87d59620441088663266F0B9342/listhive)
+
+### MVP Goals
 - Users can create and login to their account. 
 - Users can create lists and trackers.
 - Users can make lists and trackers public.
 - Users can see the public lists and trackers of other users.
 
-## Stretch Goals
+### Stretch Goals
 - Users can like the lists or trackers of other users.
 - Users can follow other users.
 - Users can add a public list or tracker as their own.
+
 
 ## Wireframes
 [ListHive Wireframes](https://www.figma.com/file/j2SWNvQj71cH64upwdJ1Ru/ListHive-Wireframes?node-id=0%3A1&t=kWKsr4rOy8JvXgca-1)
