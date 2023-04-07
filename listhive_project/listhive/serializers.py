@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Follower, Favorite, Like, List, ListItem, Tracker, TrackerField, TrackerItem, TrackerItemValue
+from .models import Follower, Favorite, Like, List, ListItem, Tracker, TrackerField, TrackerItem, TrackerItemValue, Folder, ListInFolder, TrackerInFolder
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -181,3 +181,40 @@ class TrackerItemFieldSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TrackerItemField
         fields = ('id', 'belongsToItem', 'belongsToField' 'item', 'field', 'value')
+
+
+# Folder Serializers
+class FolderSerializer(serializers.ModelSerializer):
+    lists = serializers.SerializerMethodField()
+    trackers = serializers.SerializerMethodField()
+    class Meta:
+        model = Folder
+        fields = ['id', 'user', 'name', public, 'lists', 'trackers']
+    def get_lists(self, folder):
+        lists = ListInFolder.objects.filter(folder=folder)
+        return ListInFolderSerializer(lists, many=True, context=self.context).data
+    def get_trackers(self, folder):
+        trackers = TrackerInFolder.objects.filter(folder=folder)
+        return TrackerInFolderSerializer(trackers, many=True, context=self.context).data
+
+class ListInFolderSerializer(serializers.ModelSerializer):
+    list_url = serializers.HyperlinkedRelatedField(
+        view_name='list-detail', 
+        read_only=True, 
+        source='list'
+    )
+    class Meta:
+        model = ListInFolder
+        fields = ['id', 'folder', 'list', 'list_url']
+
+class TrackerInFolderSerializer(serializers.ModelSerializer):
+    tracker_url = serializers.HyperlinkedRelatedField(
+        view_name='tracker-detail', 
+        read_only=True, 
+        source='tracker'
+    )
+
+    class Meta:
+        model = TrackerInFolder
+        fields = ['id', 'folder', 'tracker', 'tracker_url']
+
