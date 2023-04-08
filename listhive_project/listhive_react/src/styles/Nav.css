@@ -1,0 +1,91 @@
+.Nav {
+    background-color: rgb(255, 255, 255);
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid #2B2B2B;
+    border-top: none;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.nav-logo {
+    width: 200px;
+    margin: 9px;
+}
+
+.nav-login {
+    font-family: 'Baumans', cursive;
+    width: 200px;
+    height: 30px;
+    margin: 12px;
+    border-radius: 10px;
+    border: none;
+    background-color: #2B2B2B;
+    color: white;
+}
+.nav-login:hover {
+    background-color: #FFE952;
+    background-size: 80px;
+    background-repeat: none;
+    border: 2px solid #2B2B2B;
+    color:#2B2B2B;
+    -webkit-transform: rotate(4deg);
+    -moz-transform: rotate(4deg);
+    -o-transform: rotate(4deg);
+    -ms-transform: rotate(4deg);
+    transform: rotate(4deg);
+}
+
+.nav-right {
+    margin: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+}
+
+.nav-item {
+    width: 60px;
+    margin-left: 20px;
+    font-size: 16px;
+    font-family: 'Baumans', cursive;
+    text-decoration: none;
+    color: #2B2B2B;
+    background: url('../../public/assets/icon.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: start;
+}
+.nav-item:hover {
+    color: #2B2B2B;
+    -webkit-transform: rotate(10deg);
+    -moz-transform: rotate(10deg);
+    -o-transform: rotate(10deg);
+    -ms-transform: rotate(10deg);
+    transform: rotate(10deg);
+}
+
+.nav-create {
+    margin-right: 10px;
+    font-family: 'Baumans', cursive;
+    height: 30px;
+    width: 80px;
+    border-radius: 10px;
+    border: none;
+    background-color: #2B2B2B;
+    color: white;
+}
+
+.nav-create:hover {
+    background-color: #FFE952;
+    background-size: 80px;
+    background-repeat: none;
+    border: 2px solid #2B2B2B;
+    color:#2B2B2B;
+    -webkit-transform: rotate(8deg);
+    -moz-transform: rotate(8deg);
+    -o-transform: rotate(8deg);
+    -ms-transform: rotate(8deg);
+    transform: rotate(8deg);
+}
