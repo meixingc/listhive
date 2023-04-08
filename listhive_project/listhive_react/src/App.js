@@ -11,8 +11,10 @@ export default function App() {
 
     return (
         <div className="App">
-            <Nav />
-            <Main />
+            <UserContext.Provider value={{ loggedIn, setLoggedIn }}>
+                <Nav />
+                <Main />
+            </UserContext.Provider>
             <Footer />
         </div>
     )
