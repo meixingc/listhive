@@ -1,4 +1,6 @@
 .Nav {
+    z-index: 1;
+    position: relative;
     background-color: rgb(255, 255, 255);
     height: 60px;
     width: 100%;
@@ -17,7 +19,7 @@
 
 .nav-login {
     font-family: 'Baumans', cursive;
-    width: 200px;
+    width: 80px;
     height: 30px;
     margin: 12px;
     border-radius: 10px;
@@ -31,11 +33,11 @@
     background-repeat: none;
     border: 2px solid #2B2B2B;
     color:#2B2B2B;
-    -webkit-transform: rotate(4deg);
-    -moz-transform: rotate(4deg);
-    -o-transform: rotate(4deg);
-    -ms-transform: rotate(4deg);
-    transform: rotate(4deg);
+    -webkit-transform: rotate(8deg);
+    -moz-transform: rotate(8deg);
+    -o-transform: rotate(8deg);
+    -ms-transform: rotate(8deg);
+    transform: rotate(8deg);
 }
 
 .nav-right {

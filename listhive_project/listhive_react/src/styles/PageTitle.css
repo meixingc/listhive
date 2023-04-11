@@ -1,0 +1,18 @@
+.PageTitle {
+    position: alsolute;
+    z-index: -1;
+    margin-top: -20px;
+    height: 120px;
+    padding-top: 45px;
+    -webkit-clip-path: polygon(0 25%, 25% 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 60%, 95% 100%,5% 100%, 0 60%);
+    background-color: #FFE952;
+}
+
+.title {
+    font-family: 'Baumans', cursive;
+    font-size: 50px;
+    margin: auto;
+    margin-top: -5px;
+}
+
