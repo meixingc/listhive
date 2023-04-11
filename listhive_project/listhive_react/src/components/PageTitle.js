@@ -1,20 +1,40 @@
 import '../styles/PageTitle.css'
-import { useContext } from 'react'
-import { PageContext } from '../context/PageContext'
+import { useLocation } from 'react-router-dom'
 
 export default function PageTitle() {
-    const { page } = useContext(PageContext)
-    if ( page === 'home' ) {
+    const { pathname } = useLocation()
+    if ( pathname === '/' ) {
         return (
             <div className='PageTitle'>
                 <h1 className='title'> WELCOME! </h1>
             </div>
         )
     }
-    else if ( page === 'login' ) {
+    else if ( pathname === '/login' ) {
         return (
             <div className='PageTitle'>
                 <h1 className='title'> LOGIN </h1>
+            </div>
+        )
+    }
+    else if ( pathname === '/explore' ) {
+        return (
+            <div className='PageTitle'>
+                <h1 className='title'> EXPLORE </h1>
+            </div>
+        )
+    }
+    else if ( pathname === '/profile' ) {
+        return (
+            <div className='PageTitle'>
+                <h1 className='title'> PROFILE </h1>
+            </div>
+        )
+    }
+    else if ( pathname === '/create' ) {
+        return (
+            <div className='PageTitle'>
+                <h1 className='title'> CREATE </h1>
             </div>
         )
     }
