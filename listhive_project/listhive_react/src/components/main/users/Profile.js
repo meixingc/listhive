@@ -1,4 +1,4 @@
-export default function Account() {
+export default function Profile() {
     return (
         <div>
             <h1> Account </h1>
