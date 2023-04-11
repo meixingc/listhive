@@ -38,4 +38,11 @@ export default function PageTitle() {
             </div>
         )
     }
+    else if ( pathname === '/about' ) {
+        return (
+            <div className='PageTitle'>
+                <h1 className='title'> ABOUT ME </h1>
+            </div>
+        )
+    }
 }
