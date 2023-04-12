@@ -17,6 +17,13 @@ export default function PageTitle() {
             </div>
         )
     }
+    else if ( pathname === '/register' ) {
+        return (
+            <div className='PageTitle'>
+                <h1 className='title'> REGISTER </h1>
+            </div>
+        )
+    }
     else if ( pathname === '/explore' ) {
         return (
             <div className='PageTitle'>
