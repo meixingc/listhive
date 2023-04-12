@@ -7,10 +7,11 @@ import Footer from './components/Footer'
 
 export default function App() {
     const [ loggedIn, setLoggedIn ] = useState(false)
+    const [user, setUser] = useState(null)
 
     return (
         <div className="App">
-                <UserContext.Provider value={{ loggedIn, setLoggedIn }}>
+                <UserContext.Provider value={{ loggedIn, setLoggedIn, user, setUser }}>
                     <Nav />
                     <Main />
                 </UserContext.Provider>
