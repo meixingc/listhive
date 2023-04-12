@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import axios from 'axios'
-import Cookies from 'js-cookie';
-const csrftoken = Cookies.get('csrftoken');
 
 export default function Register() {
     const [form, setForm] = useState({
