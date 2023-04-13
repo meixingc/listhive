@@ -1,10 +1,9 @@
-import Client from "./api"
-import axios from "axios"
+import Client from './api'
+import axios from 'axios'
 const token = localStorage.getItem('jwt')
-console.log('Token:', token)
 
 if (token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 }
 
 export const setAuthToken = (token) => {
@@ -17,7 +16,7 @@ export const setAuthToken = (token) => {
 
 export const RegisterUser = async (data) => {
     try {
-        const res = await Client.post("/register", data)
+        const res = await Client.post('/register', data)
         return res.data
     } catch (error) {
         throw error
@@ -26,7 +25,7 @@ export const RegisterUser = async (data) => {
 
 export const SignInUser = async (data, setUser) => {
     try {
-        const res = await Client.post("/login", data)
+        const res = await Client.post('/login', data)
         const token = res.data.jwt
         setUser(res.data.user)
         setAuthToken(token)
@@ -40,16 +39,16 @@ export const SignInUser = async (data, setUser) => {
 
 export const CheckSession = async () => {
     try {
-        if (localStorage.getItem("jwt")) {
-        const response = await axios.get(
-            "http://127.0.0.1:8000/api/user",
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-                },
-            }
-        );
-        return response.data
+        if (localStorage.getItem('jwt')) {
+            const response = await axios.get(
+                'http://127.0.0.1:8000/api/user',
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                    }
+                }
+            )
+            return response.data
         }
         return null
     } catch (error) {
@@ -59,7 +58,7 @@ export const CheckSession = async () => {
 }
 
 export const UpdateUser = async (user_id, userData) => {
-    const token = localStorage.getItem("jwt")
+    const token = localStorage.getItem('jwt')
     console.log('Goodie', token)
     if (!token) {
         return null
@@ -79,7 +78,7 @@ export const UpdateUser = async (user_id, userData) => {
 
 export const LogoutUser = async () => {
     try {
-        const res = await Client.post("/logout")
+        const res = await Client.post('/logout')
         localStorage.removeItem('jwt')
         return res.data
     } catch (error) {

@@ -5,8 +5,11 @@ from .models import User, Follower, Favorite, Like, List, ListItem, Tracker, Tra
 class UserSerializer(serializers.ModelSerializer):
     num_followers = serializers.SerializerMethodField()
     class Meta:
-       model = User
-       fields = ('id', 'photo', 'first_name', 'last_name', 'username', 'email', 'num_followers')
+        model = User
+        fields = ('id', 'photo', 'first_name', 'last_name', 'username', 'password', 'email', 'num_followers')
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
     def get_num_followers(self, obj):
         return obj.followers.count() 
     def create(self, validated_data):
