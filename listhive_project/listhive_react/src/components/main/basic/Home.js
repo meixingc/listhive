@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { DataContext } from '../../../context/DataContext'
 import axios from 'axios'
 
 export default function Home() {
-    const [lists, setLists] = useState([])
-    const [trackers, setTrackers] = useState([])
+    const { lists } = useContext(DataContext)
+    const { trackers } = useContext(DataContext)
 
-    useEffect(() => {
-        axios.get('http://localhost:8000/api/lists').then(res => {
-            setLists(res.data)
-        })
-        axios.get('http://localhost:8000/api/trackers').then(res => {
-            setTrackers(res.data)
-        })
-    }, [])
+    // useEffect(() => {
+    //     axios.get('http://localhost:8000/api/lists').then(res => {
+    //         setLists(res.data)
+    //     })
+    //     axios.get('http://localhost:8000/api/trackers').then(res => {
+    //         setTrackers(res.data)
+    //     })
+    // }, [])
 
     return (
         <div className='Home'>
