@@ -18,6 +18,8 @@ class Follower(models.Model):
     followee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='followers')
     class Meta:
         unique_together = ('follower', 'followee')
+    def __str__(self):
+        return self.followee
 
 class Favorite(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='favorites')
@@ -26,6 +28,8 @@ class Favorite(models.Model):
     content_object = GenericForeignKey('content_type', 'object_id')
     class Meta:
         unique_together = ('user', 'content_type', 'object_id')
+    def __str__(self):
+        return self.user
 
 class Like(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -34,7 +38,8 @@ class Like(models.Model):
     content_object = GenericForeignKey('content_type', 'object_id')
     class Meta:
         unique_together = ('user', 'content_type', 'object_id')
-
+    def __str__(self):
+        return self.content_object
 
 # List Models
 class List(models.Model):
@@ -42,10 +47,14 @@ class List(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField()
     public = models.BooleanField(default=False)
+    def __str__(self):
+        return self.name
 
 class ListItem(models.Model):
     list = models.ForeignKey(List, on_delete=models.CASCADE)
     value = models.CharField()
+    def __str__(self):
+        return self.list
 
 
 # Tracker Models
@@ -54,31 +63,44 @@ class Tracker(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
     public = models.BooleanField(default=False)
+    def __str__(self):
+        return self.name
 
 class TrackerField(models.Model):
     tracker = models.ForeignKey(Tracker, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     datatype = models.CharField(max_length=30)
+    def __str__(self):
+        return self.tracker
 
 class TrackerItem(models.Model):
     tracker = models.ForeignKey(Tracker, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.tracker
 
 class TrackerItemValue(models.Model):
     item = models.ForeignKey(TrackerItem, on_delete=models.CASCADE)
     field = models.ForeignKey(TrackerField, on_delete=models.CASCADE)
     value = models.CharField()
-
+    def __str__(self):
+        return self.item
 
 # Folder Models
 class Folder(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='folders')
     name = models.CharField(max_length=50)
     public = models.BooleanField(default=False)
+    def __str__(self):
+        return self.name
 
 class ListInFolder(models.Model):
     folder = models.ForeignKey(Folder, on_delete=models.CASCADE, related_name='lists')
     list = models.ForeignKey(List, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.folder
 
 class TrackerInFolder(models.Model):
     folder = models.ForeignKey(Folder, on_delete=models.CASCADE, related_name='trackers')
     tracker = models.ForeignKey(Tracker, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.folder
