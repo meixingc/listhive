@@ -9,7 +9,6 @@ import Nav from './components/Nav'
 import Main from './components/Main'
 import Footer from './components/Footer'
 
-
 export default function App() {
     const [ loggedIn, setLoggedIn ] = useState(localStorage.getItem("loggedIn") == "true")
     const [ user, setUser ] = useState(null)
@@ -17,9 +16,9 @@ export default function App() {
     // const [ followers, setFollowers ] = useState([])
     // const [ favorites, setFavorites ] = useState([])
     // const [ likes, setLikes ] = useState([])
-    // const [ lists, setLists ] = useState([])
+    const [ lists, setLists ] = useState([])
     // const [ listItems, setListItems ] = useState([])
-    // const [ trackers, setTrackers ] = useState([])
+    const [ trackers, setTrackers ] = useState([])
     // const [ trackerFields, setTrackerFields ] = useState([])
     // const [ trackerItems, setTrackerItems ] = useState([])
     // const [ trackerItemValues, setTrackerItemValues ] = useState([])
