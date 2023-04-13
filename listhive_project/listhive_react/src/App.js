@@ -9,6 +9,7 @@ import { BASE_URL } from './services/api'
 import Nav from './components/Nav'
 import Main from './components/Main'
 import Footer from './components/Footer'
+import PageTitle from './components/PageTitle'
 
 export default function App() {
     const [ loggedIn, setLoggedIn ] = useState(localStorage.getItem("loggedIn") == "true")
@@ -53,14 +54,14 @@ export default function App() {
 
     // Get Initial Data
     // Users
-    // useEffect(() => {
-    //     const getUsers = async () => {
-    //         const response = await Client.get(`${BASE_URL}/users`)
-    //         setUsers(response.data)
-    //         console.log('users', response.data)
-    //     }
-    //     getUsers()
-    // }, [])
+    useEffect(() => {
+        const getUsers = async () => {
+            const response = await Client.get(`${BASE_URL}/users`)
+            setUsers(response.data)
+            console.log('users', response.data)
+        }
+        getUsers()
+    }, [])
     // Lists
     useEffect(() => {
         const getLists = async () => {
@@ -108,6 +109,7 @@ export default function App() {
         <div className="App">
                 <UserContext.Provider value={{ loggedIn, setLoggedIn, user, setUser, handleLogOut }}>
                     <Nav />
+                    <PageTitle />
                     <DataContext.Provider value={{ users, lists, listItems, trackers, trackerFields, trackerItems, trackerItemValues }}>
                         <Main />
                     </DataContext.Provider>

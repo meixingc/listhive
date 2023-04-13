@@ -1,6 +1,6 @@
+import '../styles/Main.css'
 import { Routes, Route } from "react-router-dom"
 import About from "./main/basic/About"
-import PageTitle from "./PageTitle"
 import Home from "./main/basic/Home"
 import Login from "./main/users/Login"
 import Register from "./main/users/Register"
@@ -10,8 +10,7 @@ import Create from "./main/create/CreateList"
 
 export default function Main() {
     return (
-        <div>
-            <PageTitle />
+        <div className='Main'>
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />} />
