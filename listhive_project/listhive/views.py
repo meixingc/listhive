@@ -12,7 +12,6 @@ User = get_user_model()
 from .models import Follower, Favorite, Like, List, ListItem, Tracker, TrackerField, TrackerItem, TrackerItemValue, Folder, ListInFolder, TrackerInFolder
 from .serializers import UserSerializer, FollowerSerializer, FavoriteSerializer, LikeSerializer, ListSerializer, ListItemSerializer, TrackerSerializer, TrackerFieldSerializer, TrackerItemSerializer, TrackerItemValueSerializer, FolderSerializer, ListInFolderSerializer, TrackerInFolderSerializer
 
-# Create your views here.
 # User Views
 class RegisterView(APIView):
     def post(self, req):
@@ -99,13 +98,13 @@ class UserUpdateView(APIView):
         else:
             return Response(serializer.errors, status=400)
 
-# class UserList(generics.ListCreateAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
+class UserList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-# class UserDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class FollowerList(generics.ListCreateAPIView):
     queryset = Follower.objects.all()
