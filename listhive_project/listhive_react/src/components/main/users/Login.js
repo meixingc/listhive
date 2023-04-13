@@ -1,44 +1,56 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../../../context/UserContext'
-import axios from 'axios'
-import Cookies from 'js-cookie';
-const csrftoken = Cookies.get('csrftoken');
+import { SignInUser } from '../../../services/Auth'
+import { CheckSession } from '../../../services/Auth'
 
 export default function Login() {
-    const { setLoggedIn } = useContext(UserContext)
+    const navigate = useNavigate()
 
-    const [form, setForm] = useState({
+    const { setLoggedIn, setUser } = useContext(UserContext)
+
+    const [formValues, setFormValues] = useState({
         username: '',
         password: '',
     })
 
     const handleChange = (event) => {
-        setForm({...form, [event.target.name]: event.target.value})
+        setFormValues({...formValues, [event.target.name]: event.target.value})
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        console.log(csrftoken)
-        axios.post('http://localhost:8000/accounts/login/', form, {
-            headers: {
-                'X-CSRFToken': csrftoken
-            }}).then(() => setLoggedIn(true)).catch((error) => {
-                console.log(error);
-              })
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            const payload = await SignInUser(formValues, setUser)
+            console.log(payload)
+            setFormValues({ email: "", password: "" })
+            setLoggedIn(true)
+            localStorage.setItem('loggedIn', true)
+            navigate("/")
+            console.log("Logged In")
+        } catch (error) {
+            console.error(error)
+        }
     }
+
+    useEffect(() => {
+        const sessionData = CheckSession(setUser);
+        if (sessionData) {
+            setUser(sessionData.user)
+            setLoggedIn(true)
+        }
+    }, [])
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <label>
                     Username:
-                    <input type="text" name="username" value={form.username} onChange={handleChange} />
+                    <input type="text" name="username" value={formValues.username} onChange={handleChange} />
                 </label>
                 <label>
                     Password:
-                    <input type="password" name="password" value={form.password} onChange={handleChange} />
+                    <input type="password" name="password" value={formValues.password} onChange={handleChange} />
                 </label>
                 <button type="submit">Login</button>
             </form>
