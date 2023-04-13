@@ -56,7 +56,6 @@ class ListItem(models.Model):
     def __str__(self):
         return self.list
 
-
 # Tracker Models
 class Tracker(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
