@@ -1,52 +1,62 @@
 import { useState } from 'react'
-import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { RegisterUser } from '../../../services/Auth'
 
 export default function Register() {
-    const [form, setForm] = useState({
+    const navigate = useNavigate()
+
+    const [ formValues, setFormValues ] = useState({
         photo: '',
         name: '',
         username: '',
         email: '',
         password: '',
-        confirmPassword: ''
     })
 
-    const handleChange = (event) => {
-        setForm({...form, [event.target.name]: event.target.value})
+    const handleChange = (e) => {
+        setFormValues({...formValues, [e.target.name]: e.target.value})
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        axios.post('http://localhost:8000/api/users', form)
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        await RegisterUser({
+            photo: formValues.photo,
+            name: formValues.name,
+            username: formValues.username,
+            email: formValues.email,
+            password: formValues.password,
+        })
+        setFormValues({
+            photo: '',
+            name: '',
+            username: '',
+            email: '',
+            password: '',
+        })
+        navigate('/login')
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <label>
                 Upload Photo:
-                <input type="text" name="photo" value={form.photo} onChange={handleChange} />
+                <input type="text" name="photo" value={formValues.photo} onChange={handleChange} />
             </label>
             <label>
                 Full Name:
-                <input type="text" name="name" value={form.name} onChange={handleChange} />
+                <input type="text" name="name" value={formValues.name} onChange={handleChange} />
             </label>
             <label>
                 Username:
-                <input type="text" name="username" value={form.username} onChange={handleChange} />
+                <input type="text" name="username" value={formValues.username} onChange={handleChange} />
             </label>
             <label>
                 Email:
-                <input type="email" name="email" value={form.email} onChange={handleChange} />
+                <input type="email" name="email" value={formValues.email} onChange={handleChange} />
             </label>
             <label>
                 Password:
-                <input type="password" name="password" value={form.password} onChange={handleChange} />
-            </label>
-            <label>
-                Confirm Password:
-                <input type="password" name="confirmPassword" value={form.confirmPassword} onChange={handleChange} />
+                <input type="password" name="password" value={formValues.password} onChange={handleChange} />
             </label>
             <button type="submit">Register</button>
         </form>
