@@ -4,7 +4,6 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
-# Create your models here.
 # User Models
 class CustomUser(AbstractUser):
     photo = models.TextField(default='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png')
@@ -41,6 +40,7 @@ class Like(models.Model):
     def __str__(self):
         return self.content_object
 
+
 # List Models
 class List(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -55,6 +55,7 @@ class ListItem(models.Model):
     value = models.CharField()
     def __str__(self):
         return self.list
+
 
 # Tracker Models
 class Tracker(models.Model):
@@ -83,6 +84,7 @@ class TrackerItemValue(models.Model):
     value = models.CharField()
     def __str__(self):
         return self.item
+
 
 # Folder Models
 class Folder(models.Model):

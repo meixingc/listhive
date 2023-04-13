@@ -208,4 +208,3 @@ class TrackerInFolderList(generics.ListCreateAPIView):
 class TrackerInFolderDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = TrackerInFolder.objects.all()
     serializer_class = TrackerInFolderSerializer
-
