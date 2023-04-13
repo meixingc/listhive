@@ -1,24 +1,111 @@
+import jwt, datetime
 from rest_framework import generics
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import render, redirect, get_object_or_404
+from django.core.exceptions import PermissionDenied
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth import get_user_model, logout
 User = get_user_model()
 from .models import Follower, Favorite, Like, List, ListItem, Tracker, TrackerField, TrackerItem, TrackerItemValue, Folder, ListInFolder, TrackerInFolder
 from .serializers import UserSerializer, FollowerSerializer, FavoriteSerializer, LikeSerializer, ListSerializer, ListItemSerializer, TrackerSerializer, TrackerFieldSerializer, TrackerItemSerializer, TrackerItemValueSerializer, FolderSerializer, ListInFolderSerializer, TrackerInFolderSerializer
-# for generating random list/trackers from table
-# import random
 
 # Create your views here.
-# REST API Views
 # User Views
-class UserList(generics.ListCreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+class RegisterView(APIView):
+    def post(self, req):
+        serializer = UserSerializer(data=req.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
 
-class UserDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+class LoginView(APIView):
+    def post(self, request):
+        username = request.data['username']
+        password = request.data['password']
+        user = User.objects.filter(username=username).first()
+        if user is None:
+            raise AuthenticationFailed("User not found")
+        if not user.check_password(password):
+            raise AuthenticationFailed("Incorrect password")
+        payload = {
+            'id': user.id,
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
+            'iat': datetime.datetime.utcnow()
+        }
+        token = jwt.encode(payload, 'secret', algorithm='HS256')
+        return Response({'jwt': token}, status=200)
+
+class LogoutView(APIView):
+    def post(self, request):
+        return Response({'message': 'Logged Out'}, status=200)
+
+class UserView(APIView):
+    def get_object(self, user_id):
+        try:
+            return User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            raise Http404   
+    def get(self, request): 
+        auth_header = request.headers.get('Authorization')
+        if not auth_header:
+            raise AuthenticationFailed('Authentication header missing')
+        try:
+            token = auth_header.split(' ')[1]
+            payload = jwt.decode(token, 'secret', algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Token has expired')
+        except IndexError:
+            raise AuthenticationFailed('Token prefix missing')
+        except jwt.InvalidTokenError:
+            raise AuthenticationFailed('Invalid token')
+        user = User.objects.filter(id=payload['id']).first()
+        if user is None:
+            raise AuthenticationFailed('User not found')
+        serializer = UserSerializer(user)
+        return Response(serializer.data, status=200)
+
+class UserUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+    def patch(self, request, user_id):
+        print('User ID:')
+        user = User.objects.filter(id=user_id).first()
+        if user is None:
+            raise Http404
+        auth_header = request.headers.get('Authorization')
+        print('Authentication Header:')
+        if not auth_header:
+            raise AuthenticationFailed('Authentication header missing')
+        try:
+            token = auth_header.split(' ')[1]
+            payload = jwt.decode(token, 'secret', algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Token has expired')
+        except IndexError:
+            raise AuthenticationFailed('Token prefix missing')
+        except jwt.InvalidTokenError:
+            raise AuthenticationFailed('Invalid token')
+        authenticated_user = User.objects.filter(id=payload['id']).first()
+        if authenticated_user is None:
+            raise AuthenticationFailed('User not found')
+        if authenticated_user.id != user.id:
+            raise PermissionDenied('You do not have permission to update this user')
+        serializer = UserSerializer(user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=200)
+        else:
+            return Response(serializer.errors, status=400)
+
+# class UserList(generics.ListCreateAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+
+# class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
 
 class FollowerList(generics.ListCreateAPIView):
     queryset = Follower.objects.all()
