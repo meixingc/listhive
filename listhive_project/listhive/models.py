@@ -1,11 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
 # User Models
-class CustomUser(AbstractUser):
+class User(AbstractUser):
     photo = models.TextField(default='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png')
     def get_followers(self):
         return self.followers.all()
@@ -13,15 +12,15 @@ class CustomUser(AbstractUser):
         return self.following.all()
 
 class Follower(models.Model):
-    follower = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='following')
-    followee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='followers')
+    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
+    followee = models.ForeignKey(User, on_delete=models.CASCADE, related_name='followers')
     class Meta:
         unique_together = ('follower', 'followee')
     def __str__(self):
         return self.followee
 
 class Favorite(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='favorites')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favorites')
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
@@ -31,7 +30,7 @@ class Favorite(models.Model):
         return self.user
 
 class Like(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
@@ -43,7 +42,7 @@ class Like(models.Model):
 
 # List Models
 class List(models.Model):
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     description = models.CharField()
     public = models.BooleanField(default=False)
@@ -59,7 +58,7 @@ class ListItem(models.Model):
 
 # Tracker Models
 class Tracker(models.Model):
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
     public = models.BooleanField(default=False)
@@ -79,8 +78,9 @@ class TrackerItem(models.Model):
         return self.tracker
 
 class TrackerItemValue(models.Model):
-    item = models.ForeignKey(TrackerItem, on_delete=models.CASCADE)
+    tracker = models.ForeignKey(Tracker, on_delete=models.CASCADE)
     field = models.ForeignKey(TrackerField, on_delete=models.CASCADE)
+    item = models.ForeignKey(TrackerItem, on_delete=models.CASCADE)
     value = models.CharField()
     def __str__(self):
         return self.item
@@ -88,7 +88,7 @@ class TrackerItemValue(models.Model):
 
 # Folder Models
 class Folder(models.Model):
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='folders')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='folders')
     name = models.CharField(max_length=50)
     public = models.BooleanField(default=False)
     def __str__(self):
