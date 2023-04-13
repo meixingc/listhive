@@ -37,7 +37,6 @@ export default function Login() {
         const sessionData = CheckSession(setUser);
         if (sessionData) {
             setUser(sessionData.user)
-            setLoggedIn(true)
         }
     }, [])
 
