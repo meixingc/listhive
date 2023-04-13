@@ -65,7 +65,7 @@ export const UpdateUser = async (user_id, userData) => {
         return null
     }
     try {
-        const response = await Client.patch(`http://127.0.0.1:8000/api/users/update/${user_id}/`, userData, {
+        const response = await Client.patch(`http://127.0.0.1:8000/api/user/update/${user_id}/`, userData, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
