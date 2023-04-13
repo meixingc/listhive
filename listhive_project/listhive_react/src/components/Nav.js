@@ -5,7 +5,7 @@ import { useNavigate, Link } from 'react-router-dom'
 
 export default function Nav() {
     const navigate = useNavigate()
-    const { loggedIn, setLoggedIn } = useContext(UserContext)
+    const { loggedIn, handleLogOut } = useContext(UserContext)
 
     if (!loggedIn) {
         return (
@@ -31,7 +31,7 @@ export default function Nav() {
                     <Link to ='/' className='nav-item'> Home </Link>
                     <Link to ='/explore' className='nav-item'> Explore </Link>
                     <Link to ='/profile' className='nav-item'> Profile </Link>
-                    <Link to ='/' onClick={() => setLoggedIn(false)} className='nav-item'> Log Out </Link>
+                    <Link to ='/' onClick={() => handleLogOut()} className='nav-item'> Log Out </Link>
                 </div>
             </div>
         )
