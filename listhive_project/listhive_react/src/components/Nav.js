@@ -7,7 +7,6 @@ export default function Nav() {
     const navigate = useNavigate()
     const { loggedIn, setLoggedIn } = useContext(UserContext)
 
-
     if (!loggedIn) {
         return (
             <div className='Nav'>
@@ -25,7 +24,7 @@ export default function Nav() {
         return (
             <div className='Nav'>
                 <div>
-                    <img src='/assets/logo-no-background.png' className='nav-logo'/>
+                    <img src='/assets/logo.png' className='nav-logo'/>
                 </div>
                 <div className='nav-right'>
                     <button className='nav-button' onClick={() => navigate('/create')}> Create </button>
