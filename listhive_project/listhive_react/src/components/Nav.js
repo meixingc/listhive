@@ -12,7 +12,7 @@ export default function Nav() {
         return (
             <div className='Nav'>
                 <div>
-                    <img src='/assets/logo-no-background.png' className='nav-logo'/>
+                    <img src='/assets/logo.png' className='nav-logo'/>
                 </div>
                 <div className='nav-right'>
                     <Link to ='/' className='nav-item'> Home </Link>
