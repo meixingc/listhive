@@ -28,7 +28,14 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     )
     num_followers = serializers.SerializerMethodField()
     def get_num_followers(self, obj):
-        return obj.followers.count()    
+        return obj.followers.count() 
+    def create(self, validated_data):
+        password = validated_data.pop('password', None)
+        instance = self.Meta.model(**validated_data)
+        if password is not None:
+            instance.set_password(password)
+        instance.save()
+        return instance
     class Meta:
        model = User
        fields = ('id', 'photo', 'user_url', 'first_name', 'last_name', 'username', 'email', 'lists', 'trackers', 'favorites', 'num_followers')
@@ -116,7 +123,6 @@ class ListSerializer(serializers.HyperlinkedModelSerializer):
         many=True,
         read_only=True
     )
-
     class Meta:
         model = List
         fields = ('id', 'owner', 'user', 'name', 'description', 'public', 'items')
@@ -195,15 +201,15 @@ class TrackerItemValueSerializer(serializers.HyperlinkedModelSerializer):
 class FolderSerializer(serializers.ModelSerializer):
     lists = serializers.SerializerMethodField()
     trackers = serializers.SerializerMethodField()
-    class Meta:
-        model = Folder
-        fields = ['id', 'user', 'name', 'public', 'lists', 'trackers']
     def get_lists(self, folder):
         lists = ListInFolder.objects.filter(folder=folder)
         return ListInFolderSerializer(lists, many=True, context=self.context).data
     def get_trackers(self, folder):
         trackers = TrackerInFolder.objects.filter(folder=folder)
         return TrackerInFolderSerializer(trackers, many=True, context=self.context).data
+    class Meta:
+        model = Folder
+        fields = ['id', 'user', 'name', 'public', 'lists', 'trackers']
 
 class ListInFolderSerializer(serializers.ModelSerializer):
     list_url = serializers.HyperlinkedRelatedField(
@@ -221,7 +227,6 @@ class TrackerInFolderSerializer(serializers.ModelSerializer):
         read_only=True, 
         source='tracker'
     )
-
     class Meta:
         model = TrackerInFolder
         fields = ['id', 'folder', 'tracker', 'tracker_url']
