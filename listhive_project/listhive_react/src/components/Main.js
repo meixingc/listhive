@@ -1,4 +1,3 @@
-import '../styles/Main.css'
 import { Routes, Route } from "react-router-dom"
 import About from "./main/basic/About"
 import Home from "./main/basic/Home"
@@ -6,7 +5,7 @@ import Login from "./main/users/Login"
 import Register from "./main/users/Register"
 import Explore from "./main/basic/Explore"
 import Profile from "./main/users/Profile"
-import Create from "./main/create/CreateList"
+import Create from "./main/create/Create"
 
 export default function Main() {
     return (
