@@ -43,7 +43,7 @@ class Like(models.Model):
 # List Models
 class List(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=25)
     description = models.CharField()
     public = models.BooleanField(default=False)
     def __str__(self):
@@ -59,7 +59,7 @@ class ListItem(models.Model):
 # Tracker Models
 class Tracker(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=25)
     description = models.CharField(max_length=100)
     public = models.BooleanField(default=False)
     def __str__(self):
@@ -67,7 +67,7 @@ class Tracker(models.Model):
 
 class TrackerField(models.Model):
     tracker = models.ForeignKey(Tracker, on_delete=models.CASCADE)
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=25)
     datatype = models.CharField(max_length=30)
     def __str__(self):
         return self.tracker
