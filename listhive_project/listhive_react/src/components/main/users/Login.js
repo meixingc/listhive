@@ -21,13 +21,14 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const payload = await SignInUser(formValues, setUser)
+            const { user, ...payload } = await SignInUser(formValues, setUser)
             console.log(payload)
-            setFormValues({ email: "", password: "" })
+            setFormValues({ username: "", password: "" })
             setLoggedIn(true)
             localStorage.setItem('loggedIn', true)
             navigate("/")
             console.log("Logged In")
+            setUser({ ...user, id: user })
         } catch (error) {
             console.error(error)
         }
@@ -37,6 +38,7 @@ export default function Login() {
         const sessionData = CheckSession(setUser);
         if (sessionData) {
             setUser(sessionData.user)
+            console.log('user', sessionData.user)
         }
     }, [])
 

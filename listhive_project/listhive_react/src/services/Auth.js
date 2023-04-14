@@ -30,7 +30,7 @@ export const SignInUser = async (data, setUser) => {
         setUser(res.data.user)
         setAuthToken(token)
         localStorage.setItem('jwt', token)
-        return res.data
+        return { user: res.data.user, ...res.data }
     } catch (error) {
         console.error(error)
         throw error.res.data

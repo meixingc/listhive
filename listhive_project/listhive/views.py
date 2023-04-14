@@ -2,6 +2,7 @@ import jwt, datetime
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import render, redirect, get_object_or_404
@@ -35,7 +36,7 @@ class LoginView(APIView):
             'iat': datetime.datetime.utcnow()
         }
         token = jwt.encode(payload, 'secret', algorithm='HS256')
-        return Response({'jwt': token}, status=200)
+        return Response({'jwt': token, 'user': user.id}, status=200)
 
 class LogoutView(APIView):
     def post(self, request):
@@ -132,6 +133,14 @@ class LikeDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 # List Views
+class ListCreateView(APIView):
+    def post(self, request):
+        serializer = ListSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        list_object = serializer.save()
+        return Response(ListSerializer(list_object).data, status=status.HTTP_201_CREATED)
+
 class ListList(generics.ListCreateAPIView):
     queryset = List.objects.all()
     serializer_class = ListSerializer
@@ -150,6 +159,14 @@ class ListItemDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 # Tracker Views
+class TrackerCreateView(APIView):
+    def post(self, request):
+        serializer = TrackerSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        tracker_object = serializer.save()
+        return Response(TrackerSerializer(tracker_object).data, status=status.HTTP_201_CREATED)
+
 class TrackerList(generics.ListCreateAPIView):
     queryset = Tracker.objects.all()
     serializer_class = TrackerSerializer
