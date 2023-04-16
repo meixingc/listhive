@@ -1,0 +1,49 @@
+.Explore {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.explore-search {
+    margin-top: 18px;
+    width: 700px;
+    height: 20px;
+}
+
+.explore-search-btn {
+    width: 80px;
+    height: 25.5px;
+}
+
+.explore-top-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.explore-bottom-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.explore-options {
+    background-color: #FFE952;
+    margin: 20px;
+    width: 400px;
+    height: 300px;
+    -webkit-clip-path: polygon(28% 0%, 72% 0%, 100% 50%, 72% 100%, 28% 100%, 0% 50%);
+    clip-path: polygon(28% 0%, 72% 0%, 100% 50%, 72% 100%, 28% 100%, 0% 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.explore-options:hover {
+    -webkit-transform: rotate(10deg);
+    -moz-transform: rotate(10deg);
+    -o-transform: rotate(10deg);
+    -ms-transform: rotate(10deg);
+    transform: rotate(10deg);
+}

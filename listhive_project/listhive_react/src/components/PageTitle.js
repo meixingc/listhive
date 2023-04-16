@@ -42,6 +42,13 @@ export default function PageTitle() {
             </div>
         )
     }
+    else if ( pathname === '/explore/search/results' ) {
+        return (
+            <div className='PageTitle'>
+                <h1 className='title'> Search Reuslts </h1>
+            </div>
+        )
+    }
     else if ( pathname === '/profile' ) {
         return (
             <div className='PageTitle'>

@@ -1,0 +1,9 @@
+.Search {
+    display: flex;
+    justify-content: space-around;
+}
+
+.search-section {
+    width: 30%;
+    border: 1px solid #ccc;
+}

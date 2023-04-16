@@ -14,6 +14,9 @@ import PageTitle from './components/PageTitle'
 export default function App() {
     const [ loggedIn, setLoggedIn ] = useState(localStorage.getItem("loggedIn") == "true")
     const [ user, setUser ] = useState(null)
+    const [ searchResultsLists, setSearchResultsLists ] = useState([])
+    const [ searchResultsTrackers, setSearchResultsTrackers ] = useState([])
+    const [ searchResultsUsers, setSearchResultsUsers ] = useState([])
 
     // API Data States
     // Users
@@ -110,7 +113,7 @@ export default function App() {
                 <UserContext.Provider value={{ loggedIn, setLoggedIn, user, setUser, handleLogOut }}>
                     <Nav />
                     <PageTitle />
-                    <DataContext.Provider value={{ users, lists, listItems, trackers, trackerFields, trackerItems, trackerItemValues }}>
+                    <DataContext.Provider value={{ users, lists, listItems, trackers, trackerFields, trackerItems, trackerItemValues, searchResultsLists, setSearchResultsLists, searchResultsTrackers, setSearchResultsTrackers, searchResultsUsers, setSearchResultsUsers }}>
                         <Main />
                     </DataContext.Provider>
                 </UserContext.Provider>
