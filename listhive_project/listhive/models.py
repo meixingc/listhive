@@ -51,7 +51,7 @@ class List(models.Model):
 
 class ListItem(models.Model):
     list = models.ForeignKey(List, on_delete=models.CASCADE)
-    value = models.CharField()
+    value = models.CharField(max_length=100, blank=True)
     def __str__(self):
         return self.list
 
@@ -81,7 +81,7 @@ class TrackerItemValue(models.Model):
     tracker = models.ForeignKey(Tracker, on_delete=models.CASCADE)
     field = models.ForeignKey(TrackerField, on_delete=models.CASCADE)
     item = models.ForeignKey(TrackerItem, on_delete=models.CASCADE)
-    value = models.CharField()
+    value = models.CharField(max_length=100, blank=True)
     def __str__(self):
         return self.item
 
