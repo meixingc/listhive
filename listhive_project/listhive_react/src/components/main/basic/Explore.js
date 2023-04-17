@@ -38,13 +38,12 @@ export default function Explore() {
             </form>
             <div className='explore-top-row'>
                 <h1 className='explore-options' onClick={() => navigate('/explore/lists')}> Lists </h1>
-                <h1 className='explore-options'> Trackers </h1>
+                <h1 className='explore-options' onClick={() => navigate('/explore/trackers')}> Trackers </h1>
             </div>
             <div className='explore-bottom-row'>
                 <h1 className='explore-options'> Trending </h1>
-                <h1 className='explore-options'> Creators </h1>
-            </div>
-            
+                <h1 className='explore-options' onClick={() => navigate('/explore/creators')}> Creators </h1>
+            </div> 
         </div>
     )
 }

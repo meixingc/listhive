@@ -17,6 +17,9 @@ export default function App() {
     const [ searchResultsLists, setSearchResultsLists ] = useState([])
     const [ searchResultsTrackers, setSearchResultsTrackers ] = useState([])
     const [ searchResultsUsers, setSearchResultsUsers ] = useState([])
+    const [ selectedList, setSelectedList ] = useState('')
+    const [ selectedTracker, setSelectedTracker ] = useState('')
+    const [ selectedCreator, setSelectedCreator ] = useState('')
 
     // API Data States
     // Users
@@ -113,7 +116,7 @@ export default function App() {
                 <UserContext.Provider value={{ loggedIn, setLoggedIn, user, setUser, handleLogOut }}>
                     <Nav />
                     <PageTitle />
-                    <DataContext.Provider value={{ users, lists, listItems, trackers, trackerFields, trackerItems, trackerItemValues, searchResultsLists, setSearchResultsLists, searchResultsTrackers, setSearchResultsTrackers, searchResultsUsers, setSearchResultsUsers }}>
+                    <DataContext.Provider value={{ users, lists, listItems, trackers, trackerFields, trackerItems, trackerItemValues, searchResultsLists, setSearchResultsLists, searchResultsTrackers, setSearchResultsTrackers, searchResultsUsers, setSearchResultsUsers, selectedCreator, setSelectedCreator, selectedList, setSelectedList, selectedTracker, setSelectedTracker }}>
                         <Main />
                     </DataContext.Provider>
                 </UserContext.Provider>
