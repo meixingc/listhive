@@ -1,0 +1,30 @@
+.HomeTracker {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-photo {
+    margin-left: 10px;
+}
+
+.trackerinfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.trackeritems {
+    width: 40%;
+    height: 550px;
+    background-color: #FFE952;
+    border-radius: 20px;
+}
+
+.trackeritem {
+    text-align: start;
+    margin: 40px;
+}

@@ -1,3 +1,5 @@
+import '../../../styles/HomeTracker.css'
+
 import { DataContext } from "../../../context/DataContext"
 import { useContext } from "react"
 
@@ -12,10 +14,9 @@ export default function HomeTracker() {
                     <h1 className='title'> {tracker.name} </h1>
                 ))}
             </div>
-            <div>
+            <div className='HomeTracker'>
                 {trackers.filter(tracker => tracker.id == selectedTracker).map(tracker => (
-                    <div>
-                        <h2>{tracker.description}</h2>
+                    <div className='trackerinfo'>
                         {users.map(user => {
                                 if (user.id === tracker.owner) {
                                     return (
@@ -26,12 +27,13 @@ export default function HomeTracker() {
                                     )
                                 }
                         })}
+                        <h2 className='trackerdesc'>{tracker.description}</h2>
                     </div>
                 ))}
-                <ul>
+                <ul className='trackeritems'>
                     {
                         trackerItems.filter(item => item.tracker == selectedTracker).map(item => (
-                            <li>
+                            <li className='trackeritem'>
                                 <h3>{item.value}</h3>
                             </li>
                         ))

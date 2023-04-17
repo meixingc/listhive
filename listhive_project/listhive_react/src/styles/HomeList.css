@@ -1,0 +1,30 @@
+.HomeList {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-photo {
+    margin-left: 10px;
+}
+
+.listinfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.listitems {
+    width: 40%;
+    height: 550px;
+    background-color: #FFE952;
+    border-radius: 20px;
+}
+
+.listitem {
+    text-align: start;
+    margin: 40px;
+}
