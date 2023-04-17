@@ -53,7 +53,7 @@ class ListItem(models.Model):
     list = models.ForeignKey(List, on_delete=models.CASCADE)
     value = models.CharField(max_length=100, blank=True)
     def __str__(self):
-        return self.list
+        return self.list.name
 
 
 # Tracker Models
@@ -70,12 +70,12 @@ class TrackerField(models.Model):
     name = models.CharField(max_length=25)
     datatype = models.CharField(max_length=30)
     def __str__(self):
-        return self.tracker
+        return self.tracker.name
 
 class TrackerItem(models.Model):
     tracker = models.ForeignKey(Tracker, on_delete=models.CASCADE)
     def __str__(self):
-        return self.tracker
+        return self.tracker.name
 
 class TrackerItemValue(models.Model):
     tracker = models.ForeignKey(Tracker, on_delete=models.CASCADE)
@@ -83,7 +83,7 @@ class TrackerItemValue(models.Model):
     item = models.ForeignKey(TrackerItem, on_delete=models.CASCADE)
     value = models.CharField(max_length=100, blank=True)
     def __str__(self):
-        return self.item
+        return self.tracker.name
 
 
 # Folder Models
