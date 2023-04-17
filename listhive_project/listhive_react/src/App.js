@@ -58,6 +58,10 @@ export default function App() {
         getSession()
     }, [])
 
+    useEffect(() => {
+        console.log(user)
+    }, [user])
+
     // Get Initial Data
     // Users
     useEffect(() => {

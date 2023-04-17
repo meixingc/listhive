@@ -7,6 +7,7 @@ import Login from "./main/users/Login"
 import Register from "./main/users/Register"
 import Explore from "./main/basic/Explore"
 import Lists from "./main/lists/Lists"
+import ExploreList from "./main/lists/ExploreList"
 import Trackers from "./main/trackers/Trackers"
 import Creators from "./main/creators/Creators"
 import Search from "./main/basic/Search"
@@ -26,6 +27,7 @@ export default function Main() {
                 <Route path='/explore' element={<Explore />} />
                 <Route path='/explore/search/results' element={<Search />} />
                 <Route path='/explore/lists' element={<Lists />} />
+                <Route path='/explore/lists/:id' element={<ExploreList />} />
                 <Route path='/explore/trackers' element={<Trackers />} />
                 <Route path='/explore/creators' element={<Creators />} />
                 <Route path='/profile' element={<Profile />} />
