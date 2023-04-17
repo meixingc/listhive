@@ -1,9 +1,93 @@
 .Search {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    font-family: 'Baumans', cursive;
+    align-items: center;
+}
+.searchresults {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.searchsectiontitle {
+    padding-bottom: 5px;
+    width: 200px;
+    border-bottom: solid 2px #2B2B2B;
+}
+
+.searchname {
+    margin: 5px;
+}
+
+.home-user {
+    margin-top: 5px;
+}
+
+.searchusers {
+    border: #2B2B2B solid 1px;
+    border-radius: 10px;
+    width: 300px;
+    height: 40px;
+    background-color: white;
+    margin: 5px;
+}
+
+.searchitem {
+    border: #2B2B2B solid 1px;
+    border-radius: 10px;
+    width: 300px;
+    height: 100px;
+    background-color: white;
+    margin: 5px;
 }
 
 .search-section {
-    width: 30%;
-    border: 1px solid #ccc;
+    background-color: #FFE952;
+    width: 30vw;
+    height: 600px;
+    border: 1px solid #2B2B2B;
+    border-radius: 20px;
+    margin: 10px;
+    font-family: 'Baumans', cursive;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.searchscroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    width: 30vw;
+    height: 500px;
+}
+
+.search-back-btn {
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 16px;
+    font-family: 'Baumans', cursive;
+    height: 30px;
+    width: 80px;
+    border-radius: 10px;
+    border: none;
+    background-color: #2B2B2B;
+    color: white;
+}
+
+.search-back-btn:hover {
+    background-color: #FFE952;
+    background-size: 80px;
+    background-repeat: none;
+    border: 2px solid #2B2B2B;
+    color:#2B2B2B;
+    -webkit-transform: rotate(8deg);
+    -moz-transform: rotate(8deg);
+    -o-transform: rotate(8deg);
+    -ms-transform: rotate(8deg);
+    transform: rotate(8deg);
 }

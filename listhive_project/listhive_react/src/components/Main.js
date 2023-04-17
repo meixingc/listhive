@@ -9,10 +9,13 @@ import Explore from "./main/basic/Explore"
 import Lists from "./main/lists/Lists"
 import ExploreList from "./main/lists/ExploreList"
 import Trackers from "./main/trackers/Trackers"
+import ExploreTracker from "./main/trackers/ExploreTracker"
 import Creators from "./main/creators/Creators"
 import Search from "./main/basic/Search"
 import Profile from "./main/users/Profile"
 import Create from "./main/create/Create"
+import CreateList from "./main/create/CreateList"
+import UpdateList from "./main/create/UpdateList"
 
 
 export default function Main() {
@@ -29,9 +32,12 @@ export default function Main() {
                 <Route path='/explore/lists' element={<Lists />} />
                 <Route path='/explore/lists/:id' element={<ExploreList />} />
                 <Route path='/explore/trackers' element={<Trackers />} />
+                <Route path='/explore/trackers/:id' element={<ExploreTracker />} />
                 <Route path='/explore/creators' element={<Creators />} />
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/create' element={<Create />} />
+                <Route path='/create/listitem' element={<CreateList />} />
+                <Route path='/update/list/:id' element={<UpdateList />} />
                 <Route path='/about' element={<About />} />
             </Routes>
         </div>

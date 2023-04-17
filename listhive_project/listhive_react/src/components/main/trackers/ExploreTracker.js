@@ -1,40 +1,39 @@
-import '../../../styles/HomeList.css'
+import '../../../styles/HomeTracker.css'
 
 import { DataContext } from "../../../context/DataContext"
 import { useContext } from "react"
 
-export default function ExploreList() {
-    const { lists, selectedList, listItems, users } = useContext(DataContext)
-    console.log('selectedlist', selectedList)
-    if (selectedList) {
+export default function ExploreTracker() {
+    const { trackers, selectedTracker, trackerFields, trackerItems, trackerItemValues, users } = useContext(DataContext)
+    console.log('selectedTracker', selectedTracker)
+    if (selectedTracker) {
     return (
         <div>
             <div className='PageTitle'>
-                {lists.filter(list => list.id == selectedList).map(list => (
-                    <h1 className='title'> {list.name} </h1>
+                {trackers.filter(tracker => tracker.id == selectedTracker).map(tracker => (
+                    <h1 className='title'> {tracker.name} </h1>
                 ))}
             </div>
-            <div className="HomeList">
-                {lists.filter(list => list.id == selectedList).map(list => (
-                    <div className='listinfo'>
+            <div className='HomeTracker'>
+                {trackers.filter(tracker => tracker.id == selectedTracker).map(tracker => (
+                    <div className='trackerinfo'>
                         {users.map(user => {
-                                if (user.id === list.owner) {
+                                if (user.id === tracker.owner) {
                                     return (
                                         <div className='home-user'> 
-                                            <h4> Created By : </h4>
                                             <img src={user.photo} className='user-photo'/>
                                             <h4 className='user-username'> {user.username} </h4>
                                         </div>
                                     )
                                 }
                         })}
-                        <h2 className='listdesc'>{list.description}</h2>
+                        <h2 className='trackerdesc'>{tracker.description}</h2>
                     </div>
                 ))}
-                <ul className='listitems'>
+                <ul className='trackeritems'>
                     {
-                        listItems.filter(item => item.list == selectedList).map(item => (
-                            <li className='listitem'>
+                        trackerItems.filter(item => item.tracker == selectedTracker).map(item => (
+                            <li className='trackeritem'>
                                 <h3>{item.value}</h3>
                             </li>
                         ))

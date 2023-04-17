@@ -1,36 +1,33 @@
-.Create {
+.Login {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    font-size: 16px;
     font-family: 'Baumans', cursive;
 }
 
-.create-list {
+.loginform {
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.create-tracker {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.createform {
+    width: 400px;
+    height: 200px;
     background-color: #FFE952;
     border-radius: 20px;
-    width: 30vw;  
-    height: 200px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
-.create {
+.logininput {
+    margin: 5px;
+}
+
+.loginlabel {
+    margin: 20px;
+}
+
+.login {
     margin-top: 10px;
     margin-right: 10px;
     margin-left: 10px;
@@ -44,7 +41,7 @@
     color: #2B2B2B;
 }
 
-.create:hover {
+.login:hover {
     background-color: #2B2B2B;
     background-size: 80px;
     background-repeat: none;
@@ -55,4 +52,8 @@
     -o-transform: rotate(8deg);
     -ms-transform: rotate(8deg);
     transform: rotate(8deg);
+}
+
+.noaccount {
+    margin-top: 10px;
 }

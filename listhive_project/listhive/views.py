@@ -141,6 +141,34 @@ class ListCreateView(APIView):
         list_object = serializer.save()
         return Response(ListSerializer(list_object).data, status=status.HTTP_201_CREATED)
 
+class ListUpdateView(APIView):
+    def patch(self, request, list_id):
+        list = List.objects.filter(id=list_id).first()
+        if list is None:
+            raise Http404
+        serializer = ListSerializer(list, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=200)
+        else:
+            return Response(serializer.errors, status=400)
+
+class ListDeleteView(APIView):
+    def delete(self, request, list_id):
+        list = List.objects.filter(id=list_id).first()
+        if list is None:
+            raise Http404
+        list.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class ListItemCreateView(APIView):
+    def post(self, request):
+        serializer = ListItemSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        listitem_object = serializer.save()
+        return Response(ListItemSerializer(listitem_object).data, status=status.HTTP_201_CREATED)
+
 class ListList(generics.ListCreateAPIView):
     queryset = List.objects.all()
     serializer_class = ListSerializer

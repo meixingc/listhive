@@ -8,14 +8,41 @@
 }
 
 .explore-search {
+    font-family: 'Baumans', cursive;
     margin-top: 18px;
     width: 700px;
     height: 20px;
 }
 
 .explore-search-btn {
+    margin-left: 10px;
+    font-family: 'Baumans', cursive;
     width: 80px;
     height: 25.5px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 16px;
+    font-family: 'Baumans', cursive;
+    height: 30px;
+    width: 80px;
+    border-radius: 10px;
+    border: none;
+    background-color: #2B2B2B;
+    color: white;
+}
+
+.explore-search-btn:hover {
+    background-color: #2B2B2B;
+    background-size: 80px;
+    background-repeat: none;
+    border: 2px solid #2B2B2B;
+    color:#ffffff;
+    -webkit-transform: rotate(8deg);
+    -moz-transform: rotate(8deg);
+    -o-transform: rotate(8deg);
+    -ms-transform: rotate(8deg);
+    transform: rotate(8deg);
 }
 
 .explore-top-row {

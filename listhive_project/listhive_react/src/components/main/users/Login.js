@@ -1,3 +1,5 @@
+import '../../../styles/Login.css'
+
 import { useState, useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../../../context/UserContext'
@@ -43,19 +45,19 @@ export default function Login() {
     }, [])
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Username:
+        <div className='Login'>
+            <form onSubmit={handleSubmit} className='loginform'>
+                <div className='logininput'>
+                    <label className='loginlabel'>Username:</label>
                     <input type="text" name="username" value={formValues.username} onChange={handleChange} />
-                </label>
-                <label>
-                    Password:
+                </div>
+                <div className='logininput'>
+                    <label className='loginlabel'>Password:</label>
                     <input type="password" name="password" value={formValues.password} onChange={handleChange} />
-                </label>
-                <button type="submit">Login</button>
+                </div>
+                <button type="submit" className='login'>Login</button>
             </form>
-            <Link to="/register"> No Account? </Link>
+            <Link to="/register" className='noaccount'> No Account? </Link>
         </div>
         
     )

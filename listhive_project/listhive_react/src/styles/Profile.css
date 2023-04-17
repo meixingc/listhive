@@ -1,0 +1,55 @@
+.Profile {
+    display: flec;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Baumans', cursive;
+}
+
+.profileuserctn {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileuser {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-photo {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.profileusername {
+    margin-left: 10px;
+    font-size: 50px;
+    font-family: 'Baumans', cursive;
+}
+
+.profilecreated {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.profilesection {
+    margin-top: 20px;
+    background-color: #FFE952;
+    width: 40vw;
+    height: 500px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Baumans', cursive;
+}
+
+.profilesectiontitle {
+    width: 300px;
+    border-bottom: solid 2px #2B2B2B;
+}

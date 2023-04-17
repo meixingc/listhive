@@ -1,36 +1,28 @@
-.Create {
+.Register {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     font-family: 'Baumans', cursive;
 }
 
-.create-list {
+.registerform {
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.create-tracker {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.createform {
+    width: 400px;
+    height: 300px;
     background-color: #FFE952;
     border-radius: 20px;
-    width: 30vw;  
-    height: 200px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
-.create {
+.registerinput {
+    margin: 5px;
+}
+
+.register {
     margin-top: 10px;
     margin-right: 10px;
     margin-left: 10px;
@@ -44,7 +36,7 @@
     color: #2B2B2B;
 }
 
-.create:hover {
+.register:hover {
     background-color: #2B2B2B;
     background-size: 80px;
     background-repeat: none;
@@ -55,4 +47,8 @@
     -o-transform: rotate(8deg);
     -ms-transform: rotate(8deg);
     transform: rotate(8deg);
+}
+
+.registerlabel {
+    margin: 20px;
 }

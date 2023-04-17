@@ -1,3 +1,6 @@
+import '../../../styles/Register.css'
+
+
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { RegisterUser } from '../../../services/Auth'
@@ -37,28 +40,30 @@ export default function Register() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Upload Photo:
-                <input type="text" name="photo" value={formValues.photo} onChange={handleChange} />
-            </label>
-            <label>
-                Full Name:
-                <input type="text" name="name" value={formValues.name} onChange={handleChange} />
-            </label>
-            <label>
-                Username:
-                <input type="text" name="username" value={formValues.username} onChange={handleChange} />
-            </label>
-            <label>
-                Email:
-                <input type="email" name="email" value={formValues.email} onChange={handleChange} />
-            </label>
-            <label>
-                Password:
-                <input type="password" name="password" value={formValues.password} onChange={handleChange} />
-            </label>
-            <button type="submit">Register</button>
-        </form>
+        <div className='Register'>
+            <form onSubmit={handleSubmit} className='registerform'>
+                <div className='registerinput'>
+                    <label className='registerlabel'>Upload Photo:</label>
+                    <input type="text" name="photo" value={formValues.photo} onChange={handleChange} />
+                </div>
+                <div className='registerinput'>
+                    <label className='registerlabel'>Full Name:</label>
+                    <input type="text" name="name" value={formValues.name} onChange={handleChange} />
+                </div>
+                <div className='registerinput'>
+                    <label className='registerlabel'>Username:</label>
+                    <input type="text" name="username" value={formValues.username} onChange={handleChange} />
+                </div>
+                <div className='registerinput'>
+                    <label className='registerlabel'>Email:</label>
+                    <input type="email" name="email" value={formValues.email} onChange={handleChange} />
+                </div>
+                <div className='registerinput'>
+                    <label className='registerlabel'>Password:</label>
+                    <input type="password" name="password" value={formValues.password} onChange={handleChange} />
+                </div>
+                <button type="submit" className='register'>Register</button>
+            </form>
+        </div>
     )
 }

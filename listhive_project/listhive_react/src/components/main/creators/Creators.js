@@ -10,7 +10,7 @@ export default function Creators() {
         <div className="Creators">
             {users.map(user => {
                 return (
-                    <div className='home-item'>
+                    <div className='itemctn'>
                         <div className='home-user'>
                             <img src={user.photo} className='user-photo'/>
                             <h4 className='user-username'> {user.username} </h4>

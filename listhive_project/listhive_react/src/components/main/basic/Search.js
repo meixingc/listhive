@@ -11,50 +11,60 @@ export default function Search() {
     return (
         <div className='Search'>
             <button className='search-back-btn' onClick={() => navigate('/explore')} > Back </button>
-            <div className='search-section'>
-                <h1 className='search-section-title'>Lists</h1>
-                {searchResultsLists.map(list => (
-                    <div>
-                        <h2>{list.name}</h2>
-                        {users.map(user => {
-                            if (user.id === list.owner) {
-                                return (
-                                    <div className='home-user'>
-                                        <img src={user.photo} className='user-photo'/>
-                                        <h4 className='user-username'> {user.username} </h4>
-                                    </div>
-                                )
-                            }
-                        })}
+            <div className='searchresults'>
+                <div className='search-section'>
+                    <h1 className='searchsectiontitle'>Lists</h1>
+                    <div className='searchscroll'>
+                        {searchResultsLists.map(list => (
+                            <div className='searchitem'>
+                                <h2 className='searchname'>{list.name}</h2>
+                                {users.map(user => {
+                                    if (user.id === list.owner) {
+                                        return (
+                                            <div className='home-user'>
+                                                <img src={user.photo} className='user-photo'/>
+                                                <h4 className='user-username'> {user.username} </h4>
+                                            </div>
+                                        )
+                                    }
+                                })}
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-            <div className='search-section'>
-                <h1>Trackers</h1>
-                {searchResultsTrackers.map(tracker => (
-                    <div>
-                        <h2>{tracker.name}</h2>
-                        {users.map(user => {
-                            if (user.id === tracker.owner) {
-                                return (
-                                    <div className='home-user'>
-                                        <img src={user.photo} className='user-photo'/>
-                                        <h4 className='user-username'> {user.username} </h4>
-                                    </div>
-                                )
-                            }
-                        })}
+                </div>
+                <div className='search-section'>
+                    <h1 className='searchsectiontitle'>Trackers</h1>
+                    <div className='searchscroll'>
+                        {searchResultsTrackers.map(tracker => (
+                            <div className='searchitem'>
+                                <h2 className='searchname'>{tracker.name}</h2>
+                                {users.map(user => {
+                                    if (user.id === tracker.owner) {
+                                        return (
+                                            <div className='home-user'>
+                                                <img src={user.photo} className='user-photo'/>
+                                                <h4 className='user-username'> {user.username} </h4>
+                                            </div>
+                                        )
+                                    }
+                                })}
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-            <div className='search-section'>
-                <h1>Users</h1>
-                {searchResultsUsers.map(user => (
-                    <div>
-                        <img src={user.photo}/>
-                        <h2>{user.username}</h2>
+                </div>
+                <div className='search-section'>
+                    <h1 className='searchsectiontitle'>Users</h1>
+                    <div className='searchscroll'>
+                        {searchResultsUsers.map(user => (
+                            <div className='searchusers'>
+                                <div className='home-user'>
+                                    <img src={user.photo} className='user-photo'/>
+                                    <h2>{user.username}</h2>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                ))}
+                </div>
             </div>
         </div>
     )
