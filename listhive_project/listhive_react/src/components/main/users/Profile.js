@@ -4,6 +4,7 @@ import { UserContext } from '../../../context/UserContext'
 import { DataContext } from '../../../context/DataContext'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 export default function Profile() {
     const navigate = useNavigate()
@@ -16,7 +17,11 @@ export default function Profile() {
     }
 
     return (
-        <div className='Profile'>
+        <motion.div className='Profile'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
             <div className='profileuser'>
                 {
                     users.filter(User => User.id === user.id).map(User => {
@@ -59,7 +64,7 @@ export default function Profile() {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
             
     )
 }

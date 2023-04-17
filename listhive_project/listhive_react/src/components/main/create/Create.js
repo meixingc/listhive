@@ -7,6 +7,7 @@ import { BASE_URL } from '../../../services/api'
 import { UserContext } from '../../../context/UserContext'
 import { DataContext } from '../../../context/DataContext'
 import { useContext } from 'react'
+import { motion } from 'framer-motion'
 
 export default function Create() {
     const navigate = useNavigate()
@@ -91,7 +92,11 @@ export default function Create() {
 
 
     return (
-        <div className='Create'>
+        <motion.div className='Create'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
             <div className='create-list'>
                 <h1> Create List </h1>
                 <form onSubmit={listHandleSubmit} className='createform'>
@@ -116,6 +121,6 @@ export default function Create() {
                     <button type='submit' className='create'> Create </button>
                 </form>
             </div>
-        </div>
+        </motion.div>
     )
 }

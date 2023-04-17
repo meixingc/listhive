@@ -3,6 +3,8 @@ import React, { useState, useEffect, useContext } from 'react'
 import { DataContext } from '../../../context/DataContext'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 export default function Home() {
     const navigate = useNavigate()
@@ -20,7 +22,11 @@ export default function Home() {
 
 
     return (
-        <div className='Home'>
+        <motion.div className='Home'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
             <div className='home-sections'>
                 <h3 className='home-section-title'> Recent Lists </h3>
                 <div className='home-items-ctn'>
@@ -61,6 +67,6 @@ export default function Home() {
                     ))}
                 </div>
             </div>
-        </div>    
+        </motion.div>    
     )
 }

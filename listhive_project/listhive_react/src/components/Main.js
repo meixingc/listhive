@@ -16,30 +16,34 @@ import Profile from "./main/users/Profile"
 import Create from "./main/create/Create"
 import CreateList from "./main/create/CreateList"
 import UpdateList from "./main/create/UpdateList"
-
+import { useLocation } from "react-router-dom"
+import { AnimatePresence } from 'framer-motion'
 
 export default function Main() {
+    const location = useLocation()
     return (
         <div className='Main'>
-            <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/home/list/:id' element={<HomeList />} />
-                <Route path='/home/tracker/:id' element={<HomeTracker />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/register' element={<Register />} />
-                <Route path='/explore' element={<Explore />} />
-                <Route path='/explore/search/results' element={<Search />} />
-                <Route path='/explore/lists' element={<Lists />} />
-                <Route path='/explore/lists/:id' element={<ExploreList />} />
-                <Route path='/explore/trackers' element={<Trackers />} />
-                <Route path='/explore/trackers/:id' element={<ExploreTracker />} />
-                <Route path='/explore/creators' element={<Creators />} />
-                <Route path='/profile' element={<Profile />} />
-                <Route path='/create' element={<Create />} />
-                <Route path='/create/listitem' element={<CreateList />} />
-                <Route path='/update/list/:id' element={<UpdateList />} />
-                <Route path='/about' element={<About />} />
-            </Routes>
+            <AnimatePresence >
+                <Routes location={location} key={location.pathname}>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/home/list/:id' element={<HomeList />} />
+                    <Route path='/home/tracker/:id' element={<HomeTracker />} />
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/register' element={<Register />} />
+                    <Route path='/explore' element={<Explore />} />
+                    <Route path='/explore/search/results' element={<Search />} />
+                    <Route path='/explore/lists' element={<Lists />} />
+                    <Route path='/explore/lists/:id' element={<ExploreList />} />
+                    <Route path='/explore/trackers' element={<Trackers />} />
+                    <Route path='/explore/trackers/:id' element={<ExploreTracker />} />
+                    <Route path='/explore/creators' element={<Creators />} />
+                    <Route path='/profile' element={<Profile />} />
+                    <Route path='/create' element={<Create />} />
+                    <Route path='/create/listitem' element={<CreateList />} />
+                    <Route path='/update/list/:id' element={<UpdateList />} />
+                    <Route path='/about' element={<About />} />
+                </Routes>
+            </AnimatePresence>
         </div>
     )
 }

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState} from 'react'
 import '../../../styles/Explore.css'
 import { DataContext } from '../../../context/DataContext'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 
 export default function Explore() {
@@ -31,7 +32,11 @@ export default function Explore() {
     }, [searchResultsLists, searchResultsTrackers, searchResultsUsers])
 
     return (
-        <div className='Explore'>
+        <motion.div className='Explore'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
             <form onSubmit={handleSubmit}>
                 <input className='explore-search' type='text' value={search} placeholder='Search for lists, trackers, or users' onChange={handleChange}/>
                 <button type='submit' className='explore-search-btn'> Search </button>
@@ -44,6 +49,6 @@ export default function Explore() {
                 <h1 className='explore-options'> Trending </h1>
                 <h1 className='explore-options' onClick={() => navigate('/explore/creators')}> Creators </h1>
             </div> 
-        </div>
+        </motion.div>
     )
 }
