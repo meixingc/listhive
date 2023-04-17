@@ -63,6 +63,13 @@ export default function PageTitle() {
             </div>
         )
     }
+    else if ( pathname === '/explore/creators' ) {
+        return (
+            <div className='PageTitle'>
+                <h1 className='title'> ALL CREATORS </h1>
+            </div>
+        )
+    }
     else if ( pathname === '/profile' ) {
         return (
             <div className='PageTitle'>
