@@ -22,10 +22,8 @@ Welcome to ListHive, the buzzing hub for all your list and tracker needs. This b
 - Users can like the lists or trackers of other users.
 - Users can follow other users.
 - Users can add a public list or tracker as their own.
-- Implement Three.js
 - Page animations
 - Page transitions
-- Beehive themed
 
 ## Wireframes
 [ListHive Wireframes](https://www.figma.com/file/j2SWNvQj71cH64upwdJ1Ru/ListHive-Wireframes?node-id=0%3A1&t=kWKsr4rOy8JvXgca-1)
