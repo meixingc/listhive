@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 export default function Profile() {
-    const navigate = useNavigate(
+    const navigate = useNavigate
     const { user } = useContext(UserContext)
     const { users, lists, trackers, setUpdateList } = useContext(DataContext)
 
